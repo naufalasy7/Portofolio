@@ -1,0 +1,856 @@
+<html lang="id" class="scroll-smooth"><head>
+    <!-- META TAGS & TITLE -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naufal Asyam | Electrical &amp; IoT Engineer</title>
+    
+    <!-- GOOGLE FONTS (INTER) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- EXTERNAL LIBRARIES (TAILWIND & ICONIFY) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- INTERNAL CSS START -->
+    <style>
+        /* Variabel warna dasar untuk mempermudah perubahan tema di masa depan */
+        :root {
+            --bg-color: #020617; 
+            --card-bg: #0f172a; 
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Pengaturan font utama dan warna latar keseluruhan */
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+        }
+
+        /* Styling kustom untuk Scrollbar agar terlihat modern dan terintegrasi dengan tema */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Layout untuk penumpukan (stacking) card project saat discroll */
+        .project-stack-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 5rem;
+        }
+        
+        /* Styling posisi sticky untuk efek penumpukan dinamis pada Projects Section */
+        .project-card {
+            position: sticky;
+            top: 6rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Pengaturan offset top untuk setiap card project agar bertumpuk dengan rapi */
+        .project-card:nth-child(1) { top: 6rem; }
+        .project-card:nth-child(2) { top: 7rem; }
+        .project-card:nth-child(3) { top: 8rem; }
+        .project-card:nth-child(4) { top: 9rem; }
+        .project-card:nth-child(5) { top: 10rem; }
+        .project-card:nth-child(6) { top: 11rem; }
+
+        /* Efek hover universal untuk card (Skills, Experience, Contact) */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background-color: rgba(15, 23, 42, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Styling untuk elemen badge/pill pada bagian Skills */
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 9999px;
+            transition: background 0.2s ease;
+        }
+        .skill-pill:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+                /* =========================================
+        PROJECT STACK SECTION (FIXED VERSION)
+        Fungsi: Mengatur efek sticky stacking project
+        ========================================= */
+
+        /* Container utama project stack */
+        .stack-container {
+            padding-bottom: 10vh; /* ruang scroll agar efek sticky bekerja */
+        }
+
+        /* Card project utama */
+        .project-card {
+            position: sticky; /* membuat card menempel saat scroll */
+            top: 15vh; /* posisi sticky dari atas viewport */
+            height: 70vh; /* WAJIB: membuat semua card seragam tinggi */
+            width: 100%;
+            
+            /* Centering konten card */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 5vh; /* jarak antar stack */
+            
+            transition: transform 0.3s ease; /* efek halus saat scroll */
+        }
+            </style>
+    <!-- INTERNAL CSS END -->
+</head>
+
+<body class="text-slate-300 antialiased selection:bg-blue-900 selection:text-white">
+
+    <!-- NAVBAR SECTION START -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#020617]/80 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo / Name -->
+            <a href="#" class="text-white font-medium tracking-tight text-lg flex items-center gap-2">
+                <iconify-icon icon="solar:cpu-bolt-linear" stroke-width="1.5"></iconify-icon>
+                NAUFAL ASYAM
+            </a>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- NAVBAR SECTION END -->
+
+    <main class="w-full">
+        
+        <!-- HERO SECTION START -->
+        <section class="relative min-h-[90vh] flex items-center justify-center pt-20 px-6 overflow-hidden">
+            <!-- Background Glow Effect -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-blue-900/20 blur-[120px] rounded-full pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+                
+                <!-- Profile Image -->
+                <div class="mb-8 p-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm shadow-xl">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/628ed20d-f424-4a17-82cb-78599099e78d_800w.jpg" alt="Naufal Asyam" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover">
+                </div>
+
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-slate-300 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    Available for Professional Opportunities
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-white leading-tight mb-6">
+                    Engineering <br class="hidden md:block">
+                    <span class="text-slate-500">Intelligent Systems.</span>
+                </h1>
+                
+                <!-- Professional Title -->
+                <h2 class="text-lg md:text-xl font-medium text-slate-200 tracking-tight mb-6">
+                    Naufal Asyam — Electrical Engineer | IoT Developer | Robotics &amp; Renewable Energy
+                </h2>
+                
+                <!-- Professional Summary -->
+                <p class="text-base text-slate-400 max-w-2xl leading-relaxed">
+                    Seorang engineer yang berfokus pada integrasi sistem tingkat lanjut antara perangkat keras dan perangkat lunak. Berdedikasi untuk merancang dan membangun arsitektur berbasis Internet of Things (IoT), sistem robotika otonom, dan implementasi energi terbarukan dengan pendekatan analitis serta rekayasa berbasis penyelesaian masalah nyata.
+                </p>
+
+                <!-- Call to Action Buttons -->
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-white text-slate-950 font-medium text-sm rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2">
+                        View Projects
+                        <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border border-white/10 bg-white/5 text-white font-medium text-sm rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- HERO SECTION END -->
+
+        <!-- ABOUT ME SECTION START -->
+        <section id="about" class="py-24 px-6 border-t border-white/5 bg-[#030816]">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-3xl font-medium tracking-tight text-white mb-8">Background &amp; Philosophy</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-6 text-sm text-slate-400 leading-relaxed">
+                        <p>
+                            Memiliki fondasi teknis yang kuat di bidang telekomunikasi (networking, fiber optic, dan FTTH) yang dibangun semasa menempuh pendidikan di SMK Telkom Sidoarjo. Pengalaman ini memberikan saya pemahaman mendalam mengenai arsitektur infrastruktur jaringan fisik, keandalan transmisi data, dan standar industri dalam instalasi fiber optic.
+                        </p>
+                        <p>
+                            Saat ini, sebagai mahasiswa Teknik Elektro di Telkom University, saya memperluas dan mengintegrasikan spesialisasi ke ranah Internet of Things (IoT), Embedded Systems, Robotics, dan Renewable Energy. Pendekatan engineering saya berakar pada metodologi <span class="text-slate-200 font-medium">problem-solving</span> komprehensif—menjembatani kesenjangan antara perangkat keras sensorik dan logika pemrosesan perangkat lunak tingkat tinggi.
+                        </p>
+                    </div>
+                    <div class="space-y-6 text-sm text-slate-400 leading-relaxed">
+                        <p>
+                            Saya percaya bahwa solusi teknologi terbaik tidak hanya canggih di atas kertas, melainkan harus andal (reliable), dapat diskalakan (scalable), dan efisien. Fokus utama saya mencakup sistem otonom, optimalisasi akuisisi data, hingga aktuasi terkontrol yang diimplementasikan pada proyek-proyek riil.
+                        </p>
+                        <p>
+                            Kompetensi ini tidak hanya didapat dari pendidikan akademik, melainkan diperkuat melalui pendidikan non-formal di BPVP Sidoarjo pada bidang Pemrograman Embedded System berbasis IoT. Program ini menajamkan kemampuan praktis saya dalam mengeksekusi proyek seperti integrasi sistem agrikultur pintar dengan suplai daya panel surya (solar energy) mandiri.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ABOUT ME SECTION END -->
+
+        <!-- SKILLS SECTION START -->
+        <section id="skills" class="py-24 px-6 border-t border-white/5">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-3xl font-medium tracking-tight text-white mb-12">Technical Expertise</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Category 1: Electrical & IoT -->
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                        <div class="flex items-center gap-3 mb-6">
+                            <iconify-icon icon="solar:lightbulb-bolt-linear" stroke-width="1.5" class="text-xl text-slate-300"></iconify-icon>
+                            <h4 class="text-base font-medium text-white tracking-tight">Electrical &amp; IoT</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">IoT System Dev</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Embedded System</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">RTOS Programming</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">STM32</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Sensor Integration</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Solar Panel</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Robotics -->
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                        <div class="flex items-center gap-3 mb-6">
+                            <iconify-icon icon="solar:gamepad-linear" stroke-width="1.5" class="text-xl text-slate-300"></iconify-icon>
+                            <h4 class="text-base font-medium text-white tracking-tight">Robotics</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Robot Development</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">ROS</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Python for Robotics</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Autonomous System</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Basic Control System</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Programming & Data -->
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                        <div class="flex items-center gap-3 mb-6">
+                            <iconify-icon icon="solar:code-square-linear" stroke-width="1.5" class="text-xl text-slate-300"></iconify-icon>
+                            <h4 class="text-base font-medium text-white tracking-tight">Programming &amp; Data</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Python</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">R Language</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Data Analysis</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Data Visualization</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Orange Data Mining</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Telecommunication -->
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                        <div class="flex items-center gap-3 mb-6">
+                            <iconify-icon icon="solar:routing-2-linear" stroke-width="1.5" class="text-xl text-slate-300"></iconify-icon>
+                            <h4 class="text-base font-medium text-white tracking-tight">Telecommunication</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Network Cabling</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Fiber Optic Inst.</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">FTTH</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Splicing &amp; Jointing</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 5: Tools & Hardware -->
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card md:col-span-2 lg:col-span-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <iconify-icon icon="solar:wrench-linear" stroke-width="1.5" class="text-xl text-slate-300"></iconify-icon>
+                            <h4 class="text-base font-medium text-white tracking-tight">Tools</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Arduino</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Raspberry Pi</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Basic Electronics</span>
+                            <span class="skill-pill px-3 py-1.5 text-xs text-slate-300">Figma</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- SKILLS SECTION END -->
+
+        <!-- PROJECTS SECTION START -->
+           <!-- PROJECTS SECTION START -->
+        <section id="projects" class="py-24 bg-[#0a0f1d] text-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-20 mb-16">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-[1px] w-8 bg-white/30"></div>
+                    <span class="text-xs uppercase tracking-widest text-white/50">Selected Works</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl tracking-tight font-medium">Featured Projects</h2>
+            </div>
+
+            <div class="stack-container max-w-7xl mx-auto px-6 md:px-20">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">01</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Smart Garden IoT</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Sistem otomasi perawatan taman berbasis Internet of Things yang ditenagai oleh energi terbarukan. Mengumpulkan data kelembapan tanah dan cuaca untuk efisiensi penyiraman otomatis.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">IoT</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Renewable Energy</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Automation</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-900/40 to-blue-900/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1585320806055-e71161271e1b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Smart Garden" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">02</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Smart Home Temp Monitoring</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Infrastruktur pemantauan suhu rumah pintar secara real-time. Menggunakan sensor presisi dan integrasi komersial untuk aktuasi sistem pendingin ruangan otomatis.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Embedded System</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Sensors</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Cloud</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Smart Home" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">03</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Face ID Attendance System</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Sistem presensi canggih berbasis IoT dan AI yang mengimplementasikan pengenalan wajah. Memproses data secara efisien untuk pencatatan kehadiran yang akurat dan terintegrasi database.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">AI / Vision</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">IoT</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Python</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-cyan-900/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Face ID" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">04</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">UAV VTOL Robotics Project</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Proyek riset dan pengembangan Unmanned Aerial Vehicle (UAV) berjenis Vertical Take-Off and Landing. Fokus pada operasi dasar mekanik dan kontrol elektronik penerbangan.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Robotics</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Control System</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Hardware</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/40 to-slate-700/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="UAV VTOL" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">05</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Robot Edukasi</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Merancang dan merakit platform robotik skala kecil untuk tujuan pendidikan. Proyek ini mendemonstrasikan integrasi sensor dasar dan motor untuk mengajarkan logika pemrograman.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Education</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Microcontroller</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Basic Robotics</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-900/40 to-orange-900/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Educational Robot" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">06</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Data Analysis Project</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Menggunakan Python, R, dan Orange Data Mining untuk mengekstraksi wawasan dari dataset, melakukan pembersihan data, serta membangun visualisasi untuk keputusan analitis.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Python / R</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Orange Data Mining</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Analytics</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-teal-900/40 to-blue-900/40 mix-blend-overlay"></div>
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Data Analysis" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- PROJECTS SECTION END -->
+        <!-- PROJECTS SECTION END -->
+
+        <!-- EXPERIENCE SECTION START -->
+                <!-- EXPERIENCE SECTION START -->
+        <section id="experience" class="py-24 px-6 border-t border-white/5">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-3xl font-medium tracking-tight text-white mb-12">Professional Experience</h3>
+                
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+                    
+                    <!-- 1 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Robotics Instructor — Orsted Education</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Present</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mengajar robotika, IoT, dan embedded system dengan pendekatan praktik langsung, termasuk pengenalan ROS dan pengembangan sistem robot berbasis mikrokontroler.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="relative flex items-center justify-between md:justify-normal group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Laboratory Assistant — Telkom University</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Present</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mendukung kegiatan praktikum dan riset bidang material baterai dan fisika, termasuk eksperimen laboratorium dan analisis data teknis.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Head of KRTI VTOL Team — Telkom University</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Jan 2026</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Memimpin pengembangan UAV VTOL termasuk sistem kontrol penerbangan, avionik, dan integrasi sensor dalam proyek riset kompetisi nasional.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="relative flex items-center justify-between md:justify-normal group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Owner — Roda Dua Coffee</h4>
+                            <span class="text-xs text-slate-500 mt-1">May 2025 — Present</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mengelola operasional bisnis, strategi pemasaran, serta pengembangan brand dengan pendekatan analisis bisnis dan efisiensi operasional.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Electrical Engineer & Digital Marketer — PT Centra Biotech Indonesia</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jun 2025 — Sep 2025</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mengembangkan sistem kelistrikan sekaligus strategi digital marketing, termasuk analisis bisnis dan pembuatan konten visual.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="relative flex items-center justify-between md:justify-normal group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Head of Technology Division — Young On Top</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jan 2025 — Mar 2026</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Memimpin divisi teknologi dan mendukung program entrepreneurship serta pengembangan sistem organisasi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Communication Volunteer — MRI</h4>
+                            <span class="text-xs text-slate-500 mt-1">Aug 2023 — Mar 2026</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mengelola media komunikasi organisasi dan strategi distribusi konten publik.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="relative flex items-center justify-between md:justify-normal group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Freelance Photographer & Designer</h4>
+                            <span class="text-xs text-slate-500 mt-1">Aug 2022 — Present</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Menyediakan layanan desain grafis dan fotografi profesional untuk kebutuhan branding dan konten digital.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Intern & Freelance Designer — Telkomsel</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jun 2023 — Jan 2024</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mendesain materi promosi dan mendukung strategi visual branding layanan telekomunikasi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="relative flex items-center justify-between md:justify-normal group">
+                        <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
+                        <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
+                            <h4 class="text-lg font-medium text-white">Multimedia Specialist — Yayasan Ruang Pasien Indonesia</h4>
+                            <span class="text-xs text-slate-500 mt-1">Jun 2023 — Jan 2024</span>
+                            <p class="text-sm text-slate-400 mt-3">
+                                Mengelola produksi konten multimedia dan visual untuk kebutuhan organisasi.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- EXPERIENCE SECTION END -->
+                <!-- EXPERIENCE SECTION END -->
+
+            <!-- EXPERIENCE BANNER START -->
+                <!-- EXPERIENCE BANNER START -->
+                <div class="mb-12 flex justify-center">
+                    <div class="w-full max-w-6xl rounded-2xl overflow-hidden border border-white/5 relative group">
+
+                        <!-- SLIDER WRAPPER -->
+                        <div class="overflow-hidden">
+                            <div id="bannerSlider" class="flex transition-transform duration-700 ease-in-out">
+
+                                <!-- SLIDE 1 -->
+                                <div class="min-w-full relative">
+                                    <img 
+                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8ed8ab4c-982d-4a3b-9829-390ed8578882_1600w.jpg"
+                                        class="w-full h-56 md:h-[380px] object-cover"
+                                        alt="Banner 1"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
+                                                Featured Activity
+                                            </p>
+                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
+                                                IoT & Environmental Systems Presentation
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SLIDE 2 -->
+                                <div class="min-w-full relative">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop"
+                                        class="w-full h-56 md:h-[380px] object-cover"
+                                        alt="Banner 2"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
+                                                Smart System
+                                            </p>
+                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
+                                                Embedded & Automation Project
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SLIDE 3 -->
+                                <div class="min-w-full relative">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
+                                        class="w-full h-56 md:h-[380px] object-cover"
+                                        alt="Banner 3"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
+                                                Data System
+                                            </p>
+                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
+                                                Data Analysis & Visualization
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- EXPERIENCE BANNER END -->
+            <!-- EXPERIENCE BANNER END -->
+
+
+        <!-- EDUCATION & CERTIFICATION SECTION START -->
+         
+
+        
+        <section class="py-24 px-6 border-t border-white/5 bg-[#030816]">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+
+
+                
+                <!-- Education Area -->
+                <div>
+                    <h3 class="text-2xl font-medium tracking-tight text-white mb-8 flex items-center gap-3">
+                        <iconify-icon icon="solar:diploma-linear" stroke-width="1.5"></iconify-icon>
+                        Education Matrix
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Formal Education -->
+                        <div>
+                            <h4 class="text-[10px] font-medium text-slate-500 uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Formal Education</h4>
+                            <div class="space-y-4">
+                                <div class="p-5 border-l-2 border-white/20 pl-6 bg-[#060b19] rounded-r-xl">
+                                    <h4 class="text-base font-medium text-white">Telkom University</h4>
+                                    <p class="text-sm text-slate-400">S1 Teknik Elektro</p>
+                                </div>
+                                <div class="p-5 border-l-2 border-white/20 pl-6 bg-[#060b19] rounded-r-xl">
+                                    <h4 class="text-base font-medium text-white">SMK Telkom Sidoarjo</h4>
+                                    <p class="text-sm text-slate-400">Teknik Jaringan Akses Telekomunikasi</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Non-Formal Education -->
+                        <div>
+                            <h4 class="text-[10px] font-medium text-slate-500 uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Non-Formal Education</h4>
+                            <div class="p-5 border-l-2 border-blue-500/50 pl-6 bg-[#060b19] rounded-r-xl relative overflow-hidden">
+                                <div class="absolute inset-0 bg-blue-500/5 mix-blend-overlay"></div>
+                                <h4 class="text-base font-medium text-white relative z-10">BPVP Sidoarjo</h4>
+                                <p class="text-sm font-medium text-blue-400 mb-2 relative z-10">Pelatihan Pemrograman Embedded System berbasis IoT</p>
+                                <p class="text-xs text-slate-400 leading-relaxed relative z-10">Pelatihan teknis intensif dalam merancang arsitektur IoT end-to-end. Fokus mencakup akuisisi data sensor presisi dan mikrokontroler tingkat lanjut. Menghasilkan proyek nyata berupa Smart Garden otonom dan instalasi infrastruktur energi bertenaga surya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications Area -->
+                <div>
+                    <h3 class="text-2xl font-medium tracking-tight text-white mb-8 flex items-center gap-3">
+                        <iconify-icon icon="solar:verified-check-linear" stroke-width="1.5"></iconify-icon>
+                        Professional Certifications
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">BNSP, 2024</div>
+                            <h5 class="text-sm font-medium text-white">IoT Embedded System</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">ITS, 2024</div>
+                            <h5 class="text-sm font-medium text-white">Solar Power Plant Training</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Microsoft</div>
+                            <h5 class="text-sm font-medium text-white">Azure Data Fundamentals</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Dicoding</div>
+                            <h5 class="text-sm font-medium text-white">Data Science Assessment</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center sm:col-span-2">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Telecommunication standard</div>
+                            <h5 class="text-sm font-medium text-white">Sertifikasi Fiber Optic &amp; FTTH</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- EDUCATION & CERTIFICATION SECTION END -->
+
+    </main>
+
+    <!-- FOOTER / CONTACT SECTION START -->
+        <!-- FOOTER / CONTACT SECTION START -->
+        <footer id="contact" class="py-24 px-6 border-t border-white/5 bg-[#020617]">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
+                    Let's Build Something <br> Impactful Together.
+                </h2>
+                <p class="text-sm text-slate-400">
+                    Hubungi saya untuk diskusi arsitektur teknis, kolaborasi proyek engineer, atau peluang profesional terapan.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+                <!-- WHATSAPP -->
+                <a href="https://wa.me/6289677888745" target="_blank"
+                class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex flex-col items-center text-center group transition-all">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
+                        <iconify-icon icon="solar:phone-linear" class="text-xl text-white group-hover:text-green-400"></iconify-icon>
+                    </div>
+                    <h5 class="text-sm font-medium text-white mb-1">WhatsApp</h5>
+                    <p class="text-xs text-slate-500">+62 896 7788 8745</p>
+                </a>
+
+                <!-- LINKEDIN -->
+                <a href="https://www.linkedin.com/in/naufal-asyam-alif-musthafa-035149233/" target="_blank"
+                class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex flex-col items-center text-center group transition-all">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
+                        <iconify-icon icon="solar:user-circle-linear" class="text-xl text-white group-hover:text-blue-400"></iconify-icon>
+                    </div>
+                    <h5 class="text-sm font-medium text-white mb-1">LinkedIn</h5>
+                    <p class="text-xs text-slate-500">Professional Profile</p>
+                </a>
+
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/naufalasy7/" target="_blank"
+                class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex flex-col items-center text-center group transition-all">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-pink-500/20 transition-colors">
+                        <iconify-icon icon="solar:camera-linear" class="text-xl text-white group-hover:text-pink-400"></iconify-icon>
+                    </div>
+                    <h5 class="text-sm font-medium text-white mb-1">Instagram</h5>
+                    <p class="text-xs text-slate-500">@naufalasy7</p>
+                </a>
+
+                <!-- LINKTREE -->
+                <a href="https://linktr.ee/naufal_asy7" target="_blank"
+                class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex flex-col items-center text-center group transition-all">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
+                        <iconify-icon icon="solar:link-circle-linear" class="text-xl text-white group-hover:text-purple-400"></iconify-icon>
+                    </div>
+                    <h5 class="text-sm font-medium text-white mb-1">Linktree</h5>
+                    <p class="text-xs text-slate-500">All Links</p>
+                </a>
+
+            </div>
+
+            <div class="max-w-4xl mx-auto mt-24 text-center border-t border-white/5 pt-8">
+                <p class="text-xs text-slate-600">
+                    © 2024 Naufal Asyam. Electrical & IoT Engineering Portfolio.
+                </p>
+            </div>
+        </footer>
+        <!-- FOOTER / CONTACT SECTION END -->
+    <!-- FOOTER / CONTACT SECTION END -->
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById("bannerSlider");
+
+    if (!slider) return; // safety biar nggak error
+
+    const totalSlides = slider.children.length;
+    let index = 0;
+
+    function showSlide(i) {
+        slider.style.transform = `translateX(-${i * 100}%)`;
+        slider.style.transition = "transform 0.6s ease";
+    }
+
+    function nextSlide() {
+        index = (index + 1) % totalSlides;
+        showSlide(index);
+    }
+
+    setInterval(nextSlide, 5000);
+
+    // swipe support
+    let startX = 0;
+
+    slider.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchend", (e) => {
+        let endX = e.changedTouches[0].clientX;
+
+        if (startX - endX > 50) {
+            nextSlide();
+        } else if (endX - startX > 50) {
+            index = (index - 1 + totalSlides) % totalSlides;
+            showSlide(index);
+        }
+    });
+});
+</script>
+
+
+</body></html>
