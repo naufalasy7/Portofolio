@@ -15,33 +15,132 @@
 
     <!-- INTERNAL CSS START -->
     <style>
-        /* Variabel warna dasar untuk mempermudah perubahan tema di masa depan */
+        /* =========================================
+           DARK MODE (default) & LIGHT MODE VARIABLES
+        ========================================= */
         :root {
-            --bg-color: #020617; 
-            --card-bg: #0f172a; 
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-primary: #020617;
+            --bg-secondary: #030816;
+            --bg-card: #060b19;
+            --bg-card-alt: #0a0f1d;
+            --bg-project-card: #111827;
+            --nav-bg: rgba(2, 6, 23, 0.80);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --text-faint: #334155;
+            --glow-color: rgba(30, 58, 138, 0.20);
+            --scrollbar-track: #020617;
+            --scrollbar-thumb: #334155;
+            --scrollbar-thumb-hover: #475569;
+            --skill-pill-border: rgba(255,255,255,0.1);
+            --skill-pill-bg: rgba(255,255,255,0.03);
+            --skill-pill-hover: rgba(255,255,255,0.08);
+            --hover-card-border: rgba(255,255,255,0.25);
+            --hover-card-bg: rgba(15,23,42,0.8);
+        }
+
+        html.light {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-alt: #f8fafc;
+            --bg-project-card: #ffffff;
+            --nav-bg: rgba(248, 250, 252, 0.85);
+            --border-color: rgba(0, 0, 0, 0.07);
+            --border-subtle: rgba(0, 0, 0, 0.12);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-faint: #94a3b8;
+            --glow-color: rgba(59, 130, 246, 0.08);
+            --scrollbar-track: #f1f5f9;
+            --scrollbar-thumb: #cbd5e1;
+            --scrollbar-thumb-hover: #94a3b8;
+            --skill-pill-border: rgba(0,0,0,0.1);
+            --skill-pill-bg: rgba(0,0,0,0.03);
+            --skill-pill-hover: rgba(0,0,0,0.07);
+            --hover-card-border: rgba(0,0,0,0.15);
+            --hover-card-bg: rgba(248,250,252,0.95);
         }
 
         /* Pengaturan font utama dan warna latar keseluruhan */
         html, body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Styling kustom untuk Scrollbar agar terlihat modern dan terintegrasi dengan tema */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Styling kustom untuk Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+        /* Theme transition on all elements */
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
+
+        /* Override Tailwind hardcoded bg colors with CSS variables */
+        body { background-color: var(--bg-primary) !important; }
+        .bg-\[\#020617\]  { background-color: var(--bg-primary) !important; }
+        .bg-\[\#020617\]\/80 { background-color: var(--nav-bg) !important; }
+        .bg-\[\#030816\]  { background-color: var(--bg-secondary) !important; }
+        .bg-\[\#060b19\]  { background-color: var(--bg-card) !important; }
+        .bg-\[\#0a0f1d\]  { background-color: var(--bg-card-alt) !important; }
+        .bg-\[\#111827\]  { background-color: var(--bg-project-card) !important; }
+
+        /* Nav border */
+        nav { border-color: var(--border-color) !important; }
+        nav a, nav span { color: var(--text-secondary); }
+        nav .text-white { color: var(--text-primary) !important; }
+
+        /* Section borders */
+        .border-t.border-white\/5 { border-color: var(--border-color) !important; }
+        .border-b.border-white\/5 { border-color: var(--border-color) !important; }
+
+        /* Text overrides */
+        .text-slate-300 { color: var(--text-secondary) !important; }
+        .text-slate-400 { color: var(--text-muted) !important; }
+        .text-slate-500 { color: var(--text-faint) !important; }
+        .text-slate-600 { color: var(--text-faint) !important; }
+        .text-white     { color: var(--text-primary) !important; }
+
+        /* Card borders */
+        .border-white\/5  { border-color: var(--border-color) !important; }
+        .border-white\/10 { border-color: var(--border-subtle) !important; }
+        .border-white\/20 { border-color: var(--border-subtle) !important; }
+
+        /* Light mode: hero glow */
+        html.light .bg-blue-900\/20 { background-color: var(--glow-color) !important; }
+
+        /* Light mode: selection */
+        html.light ::selection { background-color: #bfdbfe; color: #1e3a8a; }
+
+        /* Light mode: project card text fixes */
+        html.light .text-slate-200 { color: #334155 !important; }
+        html.light .font-mono.text-blue-400 { color: #2563eb !important; }
+
+        /* Light mode: timeline dot border */
+        html.light .border-slate-900 { border-color: var(--bg-secondary) !important; }
+
+        /* Light mode: hero badge */
+        html.light .bg-white\/5 { background-color: rgba(0,0,0,0.04) !important; }
+        html.light .hover\:bg-white\/10:hover { background-color: rgba(0,0,0,0.07) !important; }
+
+        /* Light mode: nav bg override */
+        html.light nav { background-color: var(--nav-bg) !important; backdrop-filter: blur(12px); }
+
+        /* Light mode: CTA button */
+        html.light .bg-white.text-slate-950 { background-color: #0f172a !important; color: #f8fafc !important; }
+        html.light .hover\:bg-slate-200:hover { background-color: #1e293b !important; }
+
+        /* Light mode: border-l accent */
+        html.light .border-l-2.border-white\/20 { border-color: rgba(0,0,0,0.15) !important; }
 
         /* Layout untuk penumpukan (stacking) card project saat discroll */
         .project-stack-container {
@@ -50,7 +149,6 @@
             padding-bottom: 5rem;
         }
         
-        /* Styling posisi sticky untuk efek penumpukan dinamis pada Projects Section */
         .project-card {
             position: sticky;
             top: 6rem;
@@ -58,63 +156,82 @@
             transition: transform 0.3s ease;
         }
 
-        /* Pengaturan offset top untuk setiap card project agar bertumpuk dengan rapi */
-        .project-card:nth-child(1) { top: 6rem; }
-        .project-card:nth-child(2) { top: 7rem; }
-        .project-card:nth-child(3) { top: 8rem; }
-        .project-card:nth-child(4) { top: 9rem; }
-        .project-card:nth-child(5) { top: 10rem; }
-        .project-card:nth-child(6) { top: 11rem; }
+        .project-card:nth-child(1)  { top: 6rem; }
+        .project-card:nth-child(2)  { top: 7rem; }
+        .project-card:nth-child(3)  { top: 8rem; }
+        .project-card:nth-child(4)  { top: 9rem; }
+        .project-card:nth-child(5)  { top: 10rem; }
+        .project-card:nth-child(6)  { top: 11rem; }
+        .project-card:nth-child(7)  { top: 12rem; }
+        .project-card:nth-child(8)  { top: 13rem; }
+        .project-card:nth-child(9)  { top: 14rem; }
+        .project-card:nth-child(10) { top: 15rem; }
 
-        /* Efek hover universal untuk card (Skills, Experience, Contact) */
+        /* Efek hover universal untuk card */
         .hover-card {
             transition: all 0.3s ease;
         }
         .hover-card:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-            background-color: rgba(15, 23, 42, 0.8);
+            border-color: var(--hover-card-border) !important;
+            background-color: var(--hover-card-bg) !important;
             transform: translateY(-2px);
         }
 
-        /* Styling untuk elemen badge/pill pada bagian Skills */
+        /* Styling untuk skill pill */
         .skill-pill {
             display: inline-flex;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--skill-pill-border);
+            background: var(--skill-pill-bg);
             border-radius: 9999px;
             transition: background 0.2s ease;
         }
         .skill-pill:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--skill-pill-hover);
         }
-                /* =========================================
-        PROJECT STACK SECTION (FIXED VERSION)
-        Fungsi: Mengatur efek sticky stacking project
-        ========================================= */
 
-        /* Container utama project stack */
+        /* PROJECT STACK SECTION */
         .stack-container {
-            padding-bottom: 10vh; /* ruang scroll agar efek sticky bekerja */
+            padding-bottom: 10vh;
         }
-
-        /* Card project utama */
         .project-card {
-            position: sticky; /* membuat card menempel saat scroll */
-            top: 15vh; /* posisi sticky dari atas viewport */
-            height: 70vh; /* WAJIB: membuat semua card seragam tinggi */
+            position: sticky;
+            top: 15vh;
+            height: 70vh;
             width: 100%;
-            
-            /* Centering konten card */
             display: flex;
             align-items: center;
             justify-content: center;
-
-            margin-bottom: 5vh; /* jarak antar stack */
-            
-            transition: transform 0.3s ease; /* efek halus saat scroll */
+            margin-bottom: 5vh;
+            transition: transform 0.3s ease;
         }
-            </style>
+
+        /* =========================================
+           THEME TOGGLE BUTTON
+        ========================================= */
+        #themeToggle {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-subtle);
+            background: var(--skill-pill-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        #themeToggle:hover {
+            background: var(--skill-pill-hover);
+            color: var(--text-primary);
+            border-color: var(--hover-card-border);
+        }
+        #themeToggle iconify-icon {
+            font-size: 1.1rem;
+            pointer-events: none;
+        }</style>
     <!-- INTERNAL CSS END -->
 </head>
 
@@ -129,13 +246,21 @@
                 NAUFAL ASYAM
             </a>
             <!-- Navigation Links -->
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
                 <a href="#about" class="hover:text-white transition-colors">About</a>
                 <a href="#skills" class="hover:text-white transition-colors">Skills</a>
                 <a href="#projects" class="hover:text-white transition-colors">Projects</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+                    <iconify-icon id="themeIcon" icon="solar:moon-linear" stroke-width="1.5"></iconify-icon>
+                </button>
             </div>
+            <!-- Mobile theme toggle -->
+            <button id="themeToggleMobile" aria-label="Toggle theme" class="md:hidden w-9 h-9 rounded-full border flex items-center justify-center" style="border-color:var(--border-subtle);background:var(--skill-pill-bg);color:var(--text-secondary);">
+                <iconify-icon id="themeIconMobile" icon="solar:moon-linear" stroke-width="1.5" style="font-size:1.1rem;"></iconify-icon>
+            </button>
         </div>
     </nav>
     <!-- NAVBAR SECTION END -->
@@ -332,7 +457,7 @@
                         </div>
                         <div class="hidden md:block bg-slate-800 relative overflow-hidden">
                             <div class="absolute inset-0 bg-gradient-to-br from-green-900/40 to-blue-900/40 mix-blend-overlay"></div>
-                            <img src="https://images.unsplash.com/photo-1585320806055-e71161271e1b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Smart Garden" class="w-full h-full object-cover opacity-60">
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2013.48.58%20(1).jpeg" alt="Smart Garden" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
                 </div>
@@ -342,19 +467,21 @@
                     <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
                         <div class="p-10 md:p-16 flex flex-col justify-center">
                             <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">02</div>
-                            <h3 class="text-3xl tracking-tight font-medium mb-4">Smart Home Temp Monitoring</h3>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Health Monitoring System</h3>
                             <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
-                                Infrastruktur pemantauan suhu rumah pintar secara real-time. Menggunakan sensor presisi dan integrasi komersial untuk aktuasi sistem pendingin ruangan otomatis.
+                                Sistem deteksi detak jantung, saturasi oksigen (SpO2), dan suhu tubuh secara real-time berbasis IoT. Mengintegrasikan sensor MAX30102 untuk pulse oximetry dan BME280 untuk suhu tubuh. Menggunakan metode <span class="text-blue-400 font-medium">Fuzzy Logic Mamdani</span> untuk inferensi kondisi kesehatan dan klasifikasi status pasien secara otomatis.
                             </p>
                             <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">MAX30102</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">BME280</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Fuzzy Logic Mamdani</span>
                                 <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Embedded System</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Sensors</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Cloud</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">IoT</span>
                             </div>
                         </div>
                         <div class="hidden md:block bg-slate-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mix-blend-overlay"></div>
-                            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Smart Home" class="w-full h-full object-cover opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-br from-red-900/30 to-pink-900/30 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2013.55.54.jpeg" alt="Health Monitoring" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
                 </div>
@@ -386,41 +513,44 @@
                     <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
                         <div class="p-10 md:p-16 flex flex-col justify-center">
                             <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">04</div>
-                            <h3 class="text-3xl tracking-tight font-medium mb-4">UAV VTOL Robotics Project</h3>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">UAV Fixed-Wing VTOL — KRTI</h3>
                             <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
-                                Proyek riset dan pengembangan Unmanned Aerial Vehicle (UAV) berjenis Vertical Take-Off and Landing. Fokus pada operasi dasar mekanik dan kontrol elektronik penerbangan.
+                                Riset dan pengembangan UAV Fixed-Wing VTOL untuk Kontes Robot Terbang Indonesia (KRTI). Sistem kendali penerbangan berbasis <span class="text-blue-400 font-medium">PX4 Autopilot</span> dengan integrasi <span class="text-blue-400 font-medium">ROS 2</span> untuk komunikasi antar node. Simulasi lingkungan menggunakan <span class="text-blue-400 font-medium">Gazebo</span> sebelum pengujian real-world.
                             </p>
                             <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Robotics</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Control System</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Hardware</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">PX4 Autopilot</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">ROS 2</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Gazebo Simulation</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Fixed-Wing VTOL</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">KRTI</span>
                             </div>
                         </div>
                         <div class="hidden md:block bg-slate-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/40 to-slate-700/40 mix-blend-overlay"></div>
-                            <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="UAV VTOL" class="w-full h-full object-cover opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/30 to-blue-900/30 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-04%20at%2015.58.08%20(1).jpeg" alt="UAV VTOL" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 5 -->
+                <!-- Project 4b: UAV Fixed Wing Simulation -->
                 <div class="project-card">
                     <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
                         <div class="p-10 md:p-16 flex flex-col justify-center">
                             <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">05</div>
-                            <h3 class="text-3xl tracking-tight font-medium mb-4">Robot Edukasi</h3>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Fixed-Wing VTOL — Simulasi & GCS</h3>
                             <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
-                                Merancang dan merakit platform robotik skala kecil untuk tujuan pendidikan. Proyek ini mendemonstrasikan integrasi sensor dasar dan motor untuk mengajarkan logika pemrograman.
+                                Pengembangan Ground Control Station (GCS) dan simulasi terbang UAV Fixed-Wing VTOL. Meliputi konfigurasi parameter PX4, pengujian mission planning via QGroundControl, serta integrasi telemetri real-time antara GCS dan airframe dalam environment simulasi Gazebo.
                             </p>
                             <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Education</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Microcontroller</span>
-                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Basic Robotics</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">GCS / QGroundControl</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">PX4 SITL</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Gazebo</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Telemetry</span>
                             </div>
                         </div>
                         <div class="hidden md:block bg-slate-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-900/40 to-orange-900/40 mix-blend-overlay"></div>
-                            <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Educational Robot" class="w-full h-full object-cover opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/30 to-slate-900/30 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.09.24.jpeg" alt="UAV Fixed Wing Simulation" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
                 </div>
@@ -430,6 +560,29 @@
                     <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
                         <div class="p-10 md:p-16 flex flex-col justify-center">
                             <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">06</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Robot Edukasi</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Merancang dan merakit platform robotik skala kecil untuk tujuan pendidikan STEM. Mendemonstrasikan integrasi sensor ultrasonik, motor DC, dan logika pemrograman berbasis Arduino. Digunakan sebagai media ajar bagi siswa SD–SMA dalam program instruktur robotika.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Arduino</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Sensor Integration</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">STEM Education</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Basic Robotics</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-900/30 to-orange-900/30 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-05-23%20at%2013.22.51.jpeg" alt="Educational Robot" class="w-full h-full object-cover opacity-80">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">07</div>
                             <h3 class="text-3xl tracking-tight font-medium mb-4">Data Analysis Project</h3>
                             <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
                                 Menggunakan Python, R, dan Orange Data Mining untuk mengekstraksi wawasan dari dataset, melakukan pembersihan data, serta membangun visualisasi untuk keputusan analitis.
@@ -442,7 +595,74 @@
                         </div>
                         <div class="hidden md:block bg-slate-800 relative overflow-hidden">
                             <div class="absolute inset-0 bg-gradient-to-br from-teal-900/40 to-blue-900/40 mix-blend-overlay"></div>
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Data Analysis" class="w-full h-full object-cover opacity-60">
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/Frame%202.png" alt="Data Analysis" class="w-full h-full object-cover opacity-80">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">08</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Solar EV Charging Station — PKM-KC</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Stasiun pengisian daya portabel bertenaga surya untuk sepeda motor listrik di komunitas 3T (Terdepan, Terluar, Tertinggal). Dirancang untuk menjawab keterbatasan infrastruktur energi di daerah terpencil. Bagian dari program PKM-KC 2025 Telkom University.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Renewable Energy</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">EV / Battery</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">PKM-KC 2025</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-900/40 to-green-900/40 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2013.48.57%20(3).jpeg" alt="Solar Charging Station" class="w-full h-full object-cover opacity-80">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">09</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Riset Baterai & Material — Lab BEST</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Riset pengembangan sistem penyimpanan energi dan daur ulang baterai di Laboratorium Basic Physics & Energy Storage (Lab BEST) Telkom University. Berkontribusi dalam perancangan adaptor hemat daya untuk kendaraan listrik roda dua dan analisis material baterai untuk meningkatkan efisiensi energi pada aplikasi EV.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Battery System</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Energy Storage</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">EV Research</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Lab BEST</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/30 to-teal-900/30 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.02.51.jpeg" alt="Battery Research" class="w-full h-full object-cover opacity-80">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="project-card">
+                    <div class="w-full h-full bg-[#111827] border border-white/10 rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl">
+                        <div class="p-10 md:p-16 flex flex-col justify-center">
+                            <div class="text-xs font-mono text-blue-400 mb-4 tracking-widest">10</div>
+                            <h3 class="text-3xl tracking-tight font-medium mb-4">Kliling — Web Tourism App</h3>
+                            <p class="text-sm font-light text-slate-400 leading-relaxed mb-8">
+                                Prototipe aplikasi pariwisata berbasis web yang dikembangkan dalam program Digital Talent Program (DTP). Berperan sebagai Product Designer & UI/UX Designer. Dipresentasikan pada Demo Day sebagai produk siap pakai.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">UI/UX Design</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Figma</span>
+                                <span class="text-xs border border-white/20 rounded-full px-4 py-1.5">Web App</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:block bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-pink-900/40 to-orange-900/40 mix-blend-overlay"></div>
+                            <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/Frame%201.png" alt="Kliling Web App" class="w-full h-full object-cover opacity-80">
                         </div>
                     </div>
                 </div>
@@ -465,7 +685,7 @@
                         <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
                         <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
                             <h4 class="text-lg font-medium text-white">Robotics Instructor — Orsted Education</h4>
-                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Present</span>
+                            <span class="text-xs text-slate-500 mt-1">2024 — Present</span>
                             <p class="text-sm text-slate-400 mt-3">
                                 Mengajar robotika, IoT, dan embedded system dengan pendekatan praktik langsung, termasuk pengenalan ROS dan pengembangan sistem robot berbasis mikrokontroler.
                             </p>
@@ -476,10 +696,10 @@
                     <div class="relative flex items-center justify-between md:justify-normal group">
                         <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
                         <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
-                            <h4 class="text-lg font-medium text-white">Laboratory Assistant — Telkom University</h4>
-                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Present</span>
+                            <h4 class="text-lg font-medium text-white">Laboratory Assistant — Telkom University (Lab BEST)</h4>
+                            <span class="text-xs text-slate-500 mt-1">Okt 2024 — Present</span>
                             <p class="text-sm text-slate-400 mt-3">
-                                Mendukung kegiatan praktikum dan riset bidang material baterai dan fisika, termasuk eksperimen laboratorium dan analisis data teknis.
+                                Membimbing praktikum fisika dasar dan penyimpanan energi, mendukung operasional lab, serta berkontribusi dalam riset daur ulang baterai dan sistem penyimpanan energi.
                             </p>
                         </div>
                     </div>
@@ -488,10 +708,10 @@
                     <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
                         <div class="hidden md:block w-5 h-5 absolute left-1/2 -translate-x-1/2 rounded-full border-[3px] border-slate-900 bg-white shadow"></div>
                         <div class="w-full md:w-[calc(50%-2rem)] p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card">
-                            <h4 class="text-lg font-medium text-white">Head of KRTI VTOL Team — Telkom University</h4>
-                            <span class="text-xs text-slate-500 mt-1">Jul 2025 — Jan 2026</span>
+                            <h4 class="text-lg font-medium text-white">Ketua Tim & Divisi Programming — UAV VTOL Vajraakasha (KRTI)</h4>
+                            <span class="text-xs text-slate-500 mt-1">Ags 2024 — Sekarang</span>
                             <p class="text-sm text-slate-400 mt-3">
-                                Memimpin pengembangan UAV VTOL termasuk sistem kontrol penerbangan, avionik, dan integrasi sensor dalam proyek riset kompetisi nasional.
+                                Menjabat sebagai Ketua Tim Satyagaruda (Jul–Nov 2024), kini di Divisi Programming Vajraakasha. Fokus pada integrasi sistem kelistrikan, kontrol, mekanik, dan pengembangan algoritma UAV VTOL untuk KRTI.
                             </p>
                         </div>
                     </div>
@@ -597,59 +817,52 @@
 
                                 <!-- SLIDE 1 -->
                                 <div class="min-w-full relative">
-                                    <img 
-                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8ed8ab4c-982d-4a3b-9829-390ed8578882_1600w.jpg"
-                                        class="w-full h-56 md:h-[380px] object-cover"
-                                        alt="Banner 1"
-                                    >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
-                                        <div>
-                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
-                                                Featured Activity
-                                            </p>
-                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
-                                                IoT & Environmental Systems Presentation
-                                            </h4>
-                                        </div>
-                                    </div>
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2015.15.18.jpeg" class="w-full h-56 md:h-[380px] object-cover object-top" alt="Banner 1">
                                 </div>
 
                                 <!-- SLIDE 2 -->
                                 <div class="min-w-full relative">
-                                    <img 
-                                        src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop"
-                                        class="w-full h-56 md:h-[380px] object-cover"
-                                        alt="Banner 2"
-                                    >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
-                                        <div>
-                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
-                                                Smart System
-                                            </p>
-                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
-                                                Embedded & Automation Project
-                                            </h4>
-                                        </div>
-                                    </div>
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2013.48.57%20(2)%20(1).jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 2">
                                 </div>
 
                                 <!-- SLIDE 3 -->
                                 <div class="min-w-full relative">
-                                    <img 
-                                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
-                                        class="w-full h-56 md:h-[380px] object-cover"
-                                        alt="Banner 3"
-                                    >
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-10">
-                                        <div>
-                                            <p class="text-xs uppercase tracking-widest text-slate-300/70 mb-2">
-                                                Data System
-                                            </p>
-                                            <h4 class="text-white text-lg md:text-2xl font-medium tracking-tight">
-                                                Data Analysis & Visualization
-                                            </h4>
-                                        </div>
-                                    </div>
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-04%20at%2015.58.08%20(1).jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 3">
+                                </div>
+
+                                <!-- SLIDE 4 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-04%20at%2015.58.08.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 4">
+                                </div>
+
+                                <!-- SLIDE 5 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.02.46.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 5">
+                                </div>
+
+                                <!-- SLIDE 6 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.02.47.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 6">
+                                </div>
+
+                                <!-- SLIDE 7 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.32.15.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 7">
+                                </div>
+
+                                <!-- SLIDE 8 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.07.42.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 8">
+                                </div>
+
+                                <!-- SLIDE 9 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.03.13.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 9">
+                                </div>
+
+                                <!-- SLIDE 10 -->
+                                <div class="min-w-full relative">
+                                    <img src="https://vczsausyegktbjgesyvd.supabase.co/storage/v1/object/public/Foto%20Portofolio/WhatsApp%20Image%202026-06-10%20at%2014.03.14.jpeg" class="w-full h-56 md:h-[380px] object-cover" alt="Banner 10">
                                 </div>
 
                             </div>
@@ -660,6 +873,61 @@
                 <!-- EXPERIENCE BANNER END -->
             <!-- EXPERIENCE BANNER END -->
 
+
+        <!-- ACHIEVEMENTS SECTION START -->
+        <section class="py-24 px-6 border-t border-white/5">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-3xl font-medium tracking-tight text-white mb-12 flex items-center gap-3">
+                    <iconify-icon icon="solar:cup-star-linear" stroke-width="1.5"></iconify-icon>
+                    Achievements & Awards
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-yellow-400 text-2xl mt-0.5">🥈</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Juara 2 — Business Plan Nasional</h5>
+                            <p class="text-xs text-slate-500 mt-1">Wonderkind Festival</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-slate-300 text-2xl mt-0.5">🏅</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Finalis — Business Plan & Business Case Competition</h5>
+                            <p class="text-xs text-slate-500 mt-1">Universitas Pertamina</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-slate-300 text-2xl mt-0.5">🏅</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Finalis — Lomba Esai Inovasi IONIC 2023</h5>
+                            <p class="text-xs text-slate-500 mt-1">Politeknik Elektronika Surabaya</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-slate-300 text-2xl mt-0.5">🏅</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Finalis — Lomba Esai Research UNLIMITED</h5>
+                            <p class="text-xs text-slate-500 mt-1">UNIDIP</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-slate-300 text-2xl mt-0.5">🏅</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Semifinalis — Business Plan & Business Case GME BBC</h5>
+                            <p class="text-xs text-slate-500 mt-1">ITB</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex items-start gap-4">
+                        <div class="text-slate-300 text-2xl mt-0.5">🏅</div>
+                        <div>
+                            <h5 class="text-sm font-medium text-white leading-snug">Finalis — Business Plan Competition</h5>
+                            <p class="text-xs text-slate-500 mt-1">Hasnur Centre</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ACHIEVEMENTS SECTION END -->
 
         <!-- EDUCATION & CERTIFICATION SECTION START -->
          
@@ -716,24 +984,32 @@
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">BNSP, 2024</div>
-                            <h5 class="text-sm font-medium text-white">IoT Embedded System</h5>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">BNSP / BPVP Sidoarjo, 2024</div>
+                            <h5 class="text-sm font-medium text-white">Pemrograman Embedded System Berbasis IoT</h5>
                         </div>
                         <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">ITS, 2024</div>
-                            <h5 class="text-sm font-medium text-white">Solar Power Plant Training</h5>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">BPVP Sidoarjo / Kemnaker RI, Feb 2026</div>
+                            <h5 class="text-sm font-medium text-white">Perancangan Instalasi Bangunan Gedung (K3, Sirkit Listrik, CAD 2D)</h5>
                         </div>
                         <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Microsoft</div>
-                            <h5 class="text-sm font-medium text-white">Azure Data Fundamentals</h5>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">PT Global Infra Teknologi, Apr 2024</div>
+                            <h5 class="text-sm font-medium text-white">Uji Kompetensi Teknik Instalasi Fiber Optik — Sangat Kompeten</h5>
                         </div>
                         <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Dicoding</div>
-                            <h5 class="text-sm font-medium text-white">Data Science Assessment</h5>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Dicoding Indonesia, Des 2023</div>
+                            <h5 class="text-sm font-medium text-white">Data Science</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">PT Telkom Indonesia, Nov 2023</div>
+                            <h5 class="text-sm font-medium text-white">Big Data Scientist</h5>
+                        </div>
+                        <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Yureka Education Center, Feb 2024</div>
+                            <h5 class="text-sm font-medium text-white">English Proficiency — TOEFL Prediction 416 (Intermediate)</h5>
                         </div>
                         <div class="p-5 rounded-xl border border-white/5 bg-[#060b19] hover-card flex flex-col justify-center sm:col-span-2">
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Telecommunication standard</div>
-                            <h5 class="text-sm font-medium text-white">Sertifikasi Fiber Optic &amp; FTTH</h5>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">ITS, 2024</div>
+                            <h5 class="text-sm font-medium text-white">TRIAC 3.0 — Solar Power Plant Training</h5>
                         </div>
                     </div>
                 </div>
@@ -756,7 +1032,17 @@
                 </p>
             </div>
 
-            <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+
+                <!-- EMAIL -->
+                <a href="mailto:nnaufalasyam7@gmail.com" target="_blank"
+                class="p-6 rounded-2xl border border-white/5 bg-[#060b19] hover-card flex flex-col items-center text-center group transition-all">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
+                        <iconify-icon icon="solar:letter-linear" class="text-xl text-white group-hover:text-red-400"></iconify-icon>
+                    </div>
+                    <h5 class="text-sm font-medium text-white mb-1">Email</h5>
+                    <p class="text-xs text-slate-500">nnaufalasyam7@gmail.com</p>
+                </a>
 
                 <!-- WHATSAPP -->
                 <a href="https://wa.me/6289677888745" target="_blank"
@@ -810,6 +1096,43 @@
     <!-- FOOTER / CONTACT SECTION END -->
 
 
+
+<!-- THEME TOGGLE SCRIPT -->
+<script>
+(function() {
+    const html = document.documentElement;
+    const STORAGE_KEY = 'theme';
+
+    // Load saved preference, default to dark
+    const saved = localStorage.getItem(STORAGE_KEY) || 'dark';
+    if (saved === 'light') html.classList.add('light');
+
+    function getIsLight() {
+        return html.classList.contains('light');
+    }
+
+    function updateIcons() {
+        const isLight = getIsLight();
+        const icon = isLight ? 'solar:sun-linear' : 'solar:moon-linear';
+        ['themeIcon', 'themeIconMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.setAttribute('icon', icon);
+        });
+    }
+
+    function toggle() {
+        html.classList.toggle('light');
+        localStorage.setItem(STORAGE_KEY, getIsLight() ? 'light' : 'dark');
+        updateIcons();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateIcons();
+        document.getElementById('themeToggle')?.addEventListener('click', toggle);
+        document.getElementById('themeToggleMobile')?.addEventListener('click', toggle);
+    });
+})();
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
